@@ -1,5 +1,4 @@
-# SCRIPT TO RUN LITTLE WASHITA DOMAIN WITH TERRAIN-FOLLOWING GRID
-#modified on jan 29, 2019 to run parking lot test for Tucson domain
+# SCRIPT TO RUN SABINO DOMAIN WITH TERRAIN-FOLLOWING GRID AND VARIABLE DZ
 # DETAILS:
 # Arugments are 1) runname 2) year
 
@@ -24,7 +23,8 @@ pfset Process.Topology.R 1
 cd "./Outputs"
 
 # ParFlow Inputs
-# file copy -force "tucson.slopex.pfb" .
+file copy -force "../parflow_inputs/tucson.slopex.pfb" .
+file copy -force "../parflow_inputs/tucson.slopey.pfb" .
 # file copy -force "../../parking_lot_test/tucson.slopey.pfb"   .
 # file copy -force "../../parflow_input/press.init.nc"  .
 # 
@@ -45,11 +45,11 @@ pfset ComputationalGrid.Lower.Z           0.0
 
 pfset ComputationalGrid.DX                90.0
 pfset ComputationalGrid.DY                90.0
-pfset ComputationalGrid.DZ                1000.0
+pfset ComputationalGrid.DZ                1.0
 
 pfset ComputationalGrid.NX                246 
 pfset ComputationalGrid.NY                178 
-pfset ComputationalGrid.NZ                1  
+pfset ComputationalGrid.NZ                20  
 
 
 #-----------------------------------------------------------------------------
@@ -73,7 +73,7 @@ pfset Geom.domain.Lower.Z                        0.0
  
 pfset Geom.domain.Upper.X                        22140.0
 pfset Geom.domain.Upper.Y                        16020.0
-pfset Geom.domain.Upper.Z                         1000.0
+pfset Geom.domain.Upper.Z                         20.0
 pfset Geom.domain.Patches             "x-lower x-upper y-lower y-upper z-lower z-upper"
 
 #-----------------------------------------------------------------------------
@@ -420,7 +420,7 @@ pfset PhaseSources.water.Geom.domain.Value            0.0
 #----------------------------------------------------------------
 # CLM Settings:
 # ------------------------------------------------------------
-pfset Solver.LSM                                      none
+pfset Solver.LSM                                        none
 # pfset Solver.CLM.CLMFileDir                           "clm_output/"
 # pfset Solver.CLM.Print1dOut                           False
 # pfset Solver.BinaryOutDir                             False
@@ -447,10 +447,10 @@ pfset Solver.LSM                                      none
 # pfset Geom.domain.ICPressure.RefPatch                   z-upper
 # pfset Geom.domain.ICPressure.FileName                   press.init.nc
 
-pfset ICPressure.Type								PFBFile
-pfset ICPressure.GeomNames							domain
+pfset ICPressure.Type								                       PFBFile
+pfset ICPressure.GeomNames							                   domain
 pfset Geom.domain.ICPressure.RefPatch               z-upper
-pfset Geom.domain.ICPressure.FileName				tucson.out.press.00030.pfb
+pfset Geom.domain.ICPressure.FileName			           	tucson.out.press.00030.pfb
 
 # pfset ICPressure.Type								Constant
 # pfset ICPressure.GeomNames							domain
@@ -492,7 +492,30 @@ pfset KnownSolution                                   NoKnownSolution
 # ParFlow Solution
 pfset Solver                                          Richards
 pfset Solver.TerrainFollowingGrid                     True
-pfset Solver.Nonlinear.VariableDz                     False
+pfset Solver.Nonlinear.VariableDz                     True
+pfset dzScale.GeomNames                               domain
+pfset dzScale.Type                                    nzList
+pfset dzScale.nzListNumber                            20
+pfset Cell.0.dzScale.Value                            200.0
+pfset Cell.1.dzScale.Value                            200.0
+pfset Cell.2.dzScale.Value                            100.0
+pfset Cell.3.dzScale.Value                            100.0
+pfset Cell.4.dzScale.Value                            50.0
+pfset Cell.5.dzScale.Value                            50.0
+pfset Cell.6.dzScale.Value                            50.0
+pfset Cell.7.dzScale.Value                            25.0
+pfset Cell.8.dzScale.Value                            25.0
+pfset Cell.9.dzScale.Value                            25.0
+pfset Cell.10.dzScale.Value                            4.0
+pfset Cell.11.dzScale.Value                            4.0
+pfset Cell.12.dzScale.Value                            4.0
+pfset Cell.13.dzScale.Value                            2.0
+pfset Cell.14.dzScale.Value                            2.0
+pfset Cell.15.dzScale.Value                            2.0
+pfset Cell.16.dzScale.Value                            1.0
+pfset Cell.17.dzScale.Value                            0.6
+pfset Cell.18.dzScale.Value                            0.3
+pfset Cell.19.dzScale.Value                            0.1
 
 pfset Solver.MaxIter                                  25000
 pfset Solver.Drop                                     1E-20
@@ -506,28 +529,32 @@ pfset Solver.Nonlinear.EtaChoice                         EtaConstant
 pfset Solver.Nonlinear.EtaValue                          0.001
 pfset Solver.Nonlinear.UseJacobian                       True 
 pfset Solver.Nonlinear.DerivativeEpsilon                 1e-16
-pfset Solver.Nonlinear.StepTol				 			1e-30
+pfset Solver.Nonlinear.StepTol				 			                   1e-30
 pfset Solver.Nonlinear.Globalization                     LineSearch
 pfset Solver.Linear.KrylovDimension                      70
-pfset Solver.Linear.MaxRestarts                           2
+pfset Solver.Linear.MaxRestarts                          2
 
 pfset Solver.Linear.Preconditioner                       PFMG
-pfset Solver.Linear.Preconditioner.PCMatrixType     FullJacobian
+pfset Solver.Linear.Preconditioner.PCMatrixType          FullJacobian
 
-# pfset NetCDF.NumStepsPerFile			5
-# pfset NetCDF.CLMNumStepsPerFile                 24
-# pfset NetCDF.WritePressure				True
-# pfset NetCDF.WriteSaturation			True
-# pfset NetCDF.WriteMannings				True
-# pfset NetCDF.WriteSubsurface			True
-# pfset NetCDF.WriteSlopes				True
-# pfset NetCDF.WriteMask					True
-# pfset NetCDF.WriteDZMultiplier			True
-# pfset NetCDF.WriteEvapTrans				True
-# pfset NetCDF.WriteEvapTransSum			True
-# pfset NetCDF.WriteOverlandSum			True
-# pfset NetCDF.WriteOverlandBCFlux		True
-# pfset NetCDF.WriteCLM					True
+#pfset OverlandFlowSpinUp                             1
+#pfset OverlandSpinupDampP1                           10.0
+#pfset OverlandSpinupDampP2                           0.1
+
+# pfset NetCDF.NumStepsPerFile			                     5
+# pfset NetCDF.CLMNumStepsPerFile                     24
+# pfset NetCDF.WritePressure				                      True
+# pfset NetCDF.WriteSaturation			                     True
+# pfset NetCDF.WriteMannings			     	                 True
+# pfset NetCDF.WriteSubsurface			                     True
+# pfset NetCDF.WriteSlopes				                        True
+# pfset NetCDF.WriteMask					                         True
+# pfset NetCDF.WriteDZMultiplier		    	               True
+# pfset NetCDF.WriteEvapTrans				                     True
+# pfset NetCDF.WriteEvapTransSum			                   True
+# pfset NetCDF.WriteOverlandSum			                    True
+# pfset NetCDF.WriteOverlandBCFlux		                  True
+# pfset NetCDF.WriteCLM					                          True
 
 #-----------------------------------------------------------------------------
 # Distribute inputs
@@ -537,13 +564,12 @@ pfset ComputationalGrid.NY                178
 pfset ComputationalGrid.NZ                1
 pfdist tucson.slopex.pfb
 pfdist tucson.slopey.pfb
-pfdist tucson.out.press.00030.pfb
 
 # pfset ComputationalGrid.NX                246 
 # pfset ComputationalGrid.NY                178 
-# pfset ComputationalGrid.NZ                1
+# pfset ComputationalGrid.NZ                20
 # pfdist IndicatorFile_Gleeson.50z.pfb
-#pfdist press.init.pfb
+# pfdist tucson.out.press.00030.pfb
 
 #-----------------------------------------------------------------------------
 # Run Simulation 
