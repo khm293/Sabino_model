@@ -13,7 +13,7 @@ pfset     FileVersion    4
 # Set Processor topology 
 #-----------------------------------------------------------------------------
 pfset Process.Topology.P 1
-pfset Process.Topology.Q 4
+pfset Process.Topology.Q 1
 pfset Process.Topology.R 1
 
 #-----------------------------------------------------------------------------
@@ -49,7 +49,7 @@ pfset ComputationalGrid.DZ                1.0
 
 pfset ComputationalGrid.NX                246 
 pfset ComputationalGrid.NY                178 
-pfset ComputationalGrid.NZ                20  
+pfset ComputationalGrid.NZ                17  
 
 
 #-----------------------------------------------------------------------------
@@ -73,7 +73,7 @@ pfset Geom.domain.Lower.Z                        0.0
  
 pfset Geom.domain.Upper.X                        22140.0
 pfset Geom.domain.Upper.Y                        16020.0
-pfset Geom.domain.Upper.Z                         20.0
+pfset Geom.domain.Upper.Z                         17.0
 pfset Geom.domain.Patches             "x-lower x-upper y-lower y-upper z-lower z-upper"
 
 #-----------------------------------------------------------------------------
@@ -421,23 +421,23 @@ pfset PhaseSources.water.Geom.domain.Value            0.0
 # CLM Settings:
 # ------------------------------------------------------------
 pfset Solver.LSM                                        none
-# pfset Solver.CLM.CLMFileDir                           "clm_output/"
-# pfset Solver.CLM.Print1dOut                           False
-# pfset Solver.BinaryOutDir                             False
-# pfset Solver.CLM.CLMDumpInterval                      1
-# 
-# pfset Solver.CLM.MetForcing                           NC
-# pfset Solver.CLM.MetFileName                          "metForcing.nc"
-# #pfset Solver.CLM.MetFilePath                          "../../NLDAS/"
-# pfset Solver.CLM.MetFileNT                            1
-# pfset Solver.CLM.IstepStart                           1
-# 
-# pfset Solver.CLM.EvapBeta                             Linear
-# pfset Solver.CLM.VegWaterStress                       Saturation
-# pfset Solver.CLM.ResSat                               0.1
-# pfset Solver.CLM.WiltingPoint                         0.12
-# pfset Solver.CLM.FieldCapacity                        0.98
-# pfset Solver.CLM.IrrigationType                       none
+pfset Solver.CLM.CLMFileDir                           "clm_output/"
+pfset Solver.CLM.Print1dOut                           False
+pfset Solver.BinaryOutDir                             False
+pfset Solver.CLM.CLMDumpInterval                      1
+ 
+pfset Solver.CLM.MetForcing                           NC
+pfset Solver.CLM.MetFileName                          "wrfout_d02_*.nc"
+pfset Solver.CLM.MetFilePath                          "../../NLDAS/"
+pfset Solver.CLM.MetFileNT                            24
+pfset Solver.CLM.IstepStart                           1
+ 
+pfset Solver.CLM.EvapBeta                             Linear
+pfset Solver.CLM.VegWaterStress                       Saturation
+pfset Solver.CLM.ResSat                               0.1
+pfset Solver.CLM.WiltingPoint                         0.12
+pfset Solver.CLM.FieldCapacity                        0.98
+pfset Solver.CLM.IrrigationType                       none
 
 #---------------------------------------------------------
 # Initial conditions: water pressure
@@ -495,27 +495,24 @@ pfset Solver.TerrainFollowingGrid                     True
 pfset Solver.Nonlinear.VariableDz                     True
 pfset dzScale.GeomNames                               domain
 pfset dzScale.Type                                    nzList
-pfset dzScale.nzListNumber                            20
-pfset Cell.0.dzScale.Value                            200.0
-pfset Cell.1.dzScale.Value                            200.0
-pfset Cell.2.dzScale.Value                            100.0
-pfset Cell.3.dzScale.Value                            100.0
-pfset Cell.4.dzScale.Value                            50.0
-pfset Cell.5.dzScale.Value                            50.0
-pfset Cell.6.dzScale.Value                            50.0
-pfset Cell.7.dzScale.Value                            25.0
-pfset Cell.8.dzScale.Value                            25.0
-pfset Cell.9.dzScale.Value                            25.0
-pfset Cell.10.dzScale.Value                            4.0
-pfset Cell.11.dzScale.Value                            4.0
-pfset Cell.12.dzScale.Value                            4.0
-pfset Cell.13.dzScale.Value                            2.0
-pfset Cell.14.dzScale.Value                            2.0
-pfset Cell.15.dzScale.Value                            2.0
-pfset Cell.16.dzScale.Value                            1.0
-pfset Cell.17.dzScale.Value                            0.6
-pfset Cell.18.dzScale.Value                            0.3
-pfset Cell.19.dzScale.Value                            0.1
+pfset dzScale.nzListNumber                            17
+pfset Cell.0.dzScale.Value                           200.0
+pfset Cell.1.dzScale.Value                           100.0
+pfset Cell.2.dzScale.Value                            50.0
+pfset Cell.3.dzScale.Value                            50.0
+pfset Cell.4.dzScale.Value                            20.0
+pfset Cell.5.dzScale.Value                            20.0
+pfset Cell.6.dzScale.Value                            20.0
+pfset Cell.7.dzScale.Value                            20.0
+pfset Cell.8.dzScale.Value                            10.0
+pfset Cell.9.dzScale.Value                             2.0
+pfset Cell.10.dzScale.Value                            2.0
+pfset Cell.11.dzScale.Value                            2.0
+pfset Cell.12.dzScale.Value                            2.0
+pfset Cell.13.dzScale.Value                            1.0
+pfset Cell.14.dzScale.Value                            0.6
+pfset Cell.15.dzScale.Value                            0.3
+pfset Cell.16.dzScale.Value                            0.1
 
 pfset Solver.MaxIter                                  25000
 pfset Solver.Drop                                     1E-20
@@ -567,7 +564,7 @@ pfdist tucson.slopey.pfb
 
 # pfset ComputationalGrid.NX                246 
 # pfset ComputationalGrid.NY                178 
-# pfset ComputationalGrid.NZ                20
+# pfset ComputationalGrid.NZ                17
 # pfdist IndicatorFile_Gleeson.50z.pfb
 # pfdist tucson.out.press.00030.pfb
 
