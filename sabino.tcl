@@ -45,7 +45,7 @@ pfset ComputationalGrid.Lower.Z           0.0
 
 pfset ComputationalGrid.DX                90.0
 pfset ComputationalGrid.DY                90.0
-pfset ComputationalGrid.DZ                1.0
+pfset ComputationalGrid.DZ                100.0
 
 pfset ComputationalGrid.NX                246 
 pfset ComputationalGrid.NY                178 
@@ -188,13 +188,13 @@ pfset Gravity                             1.0
 #-----------------------------------------------------------------------------
 # Timing (time units is set by units of permeability)
 #-----------------------------------------------------------------------------
-pfset TimingInfo.BaseUnit        1
-pfset TimingInfo.StartCount      0
+pfset TimingInfo.BaseUnit        1.0
+pfset TimingInfo.StartCount      0.0
 pfset TimingInfo.StartTime       0.0
-pfset TimingInfo.StopTime        300.0
-pfset TimingInfo.DumpInterval    10
+pfset TimingInfo.StopTime        8784.0
+pfset TimingInfo.DumpInterval    24.0
 pfset TimeStep.Type              Constant
-pfset TimeStep.Value             1
+pfset TimeStep.Value             1.0
 
 #-----------------------------------------------------------------------------
 # Porosity
@@ -203,7 +203,7 @@ pfset TimeStep.Value             1
 pfset Geom.Porosity.GeomNames             "domain"
 
 pfset Geom.domain.Porosity.Type          Constant
-pfset Geom.domain.Porosity.Value         0.01
+pfset Geom.domain.Porosity.Value         0.10
 
 # pfset Geom.s1.Porosity.Type    Constant
 # pfset Geom.s1.Porosity.Value   0.375
@@ -251,18 +251,10 @@ pfset Wells.Names                         ""
 #-----------------------------------------------------------------------------
 # Time Cycles
 #-----------------------------------------------------------------------------
-pfset Cycle.Names "constant rainrec"
+pfset Cycle.Names "constant"
 pfset Cycle.constant.Names              "alltime"
 pfset Cycle.constant.alltime.Length      1
 pfset Cycle.constant.Repeat             -1
-
-# rainfall and recession time periods are defined here
-# rain for 7 hours, recession for 3 hours
-
-pfset Cycle.rainrec.Names                 "rain rec"
-pfset Cycle.rainrec.rain.Length           1
-pfset Cycle.rainrec.rec.Length            2
-pfset Cycle.rainrec.Repeat                -1
 
 #-----------------------------------------------------------------------------
 # Boundary Conditions
@@ -291,9 +283,8 @@ pfset Patch.y-upper.BCPressure.alltime.Value	      0.0
 
 ## overland flow boundary condition with very heavy rainfall then slight ET
 pfset Patch.z-upper.BCPressure.Type		      OverlandFlow
-pfset Patch.z-upper.BCPressure.Cycle		      "rainrec"
-pfset Patch.z-upper.BCPressure.rain.Value	      -0.05
-pfset Patch.z-upper.BCPressure.rec.Value	      0.0000001
+pfset Patch.z-upper.BCPressure.Cycle		      "constant"
+pfset Patch.z-upper.BCPressure.alltime.Value	      0.0
 
 #-----------------------------------------------------------------------------
 # Topo slopes in x-direction
@@ -427,9 +418,9 @@ pfset Solver.BinaryOutDir                             False
 pfset Solver.CLM.CLMDumpInterval                      1
  
 pfset Solver.CLM.MetForcing                           NC
-pfset Solver.CLM.MetFileName                          "wrfout_d02_*.nc"
-pfset Solver.CLM.MetFilePath                          "../../NLDAS/"
-pfset Solver.CLM.MetFileNT                            24
+pfset Solver.CLM.MetFileName                          "met_forcing_2000.nc"
+pfset Solver.CLM.MetFilePath                          "../clm_input/"
+pfset Solver.CLM.MetFileNT                            1
 pfset Solver.CLM.IstepStart                           1
  
 pfset Solver.CLM.EvapBeta                             Linear
@@ -447,15 +438,15 @@ pfset Solver.CLM.IrrigationType                       none
 # pfset Geom.domain.ICPressure.RefPatch                   z-upper
 # pfset Geom.domain.ICPressure.FileName                   press.init.nc
 
-pfset ICPressure.Type								                       PFBFile
-pfset ICPressure.GeomNames							                   domain
-pfset Geom.domain.ICPressure.RefPatch               z-upper
-pfset Geom.domain.ICPressure.FileName			           	tucson.out.press.00030.pfb
+#pfset ICPressure.Type	 	                       PFBFile
+#pfset ICPressure.GeomNames                             domain
+#pfset Geom.domain.ICPressure.RefPatch                  z-upper
+#pfset Geom.domain.ICPressure.FileName                  tucson.out.press.00030.pfb
 
-# pfset ICPressure.Type								Constant
-# pfset ICPressure.GeomNames							domain
-# pfset Geom.domain.ICPressure.RefPatch               z-upper
-# pfset Geom.domain.ICPressure.Value				     -1
+pfset ICPressure.Type					Constant
+pfset ICPressure.GeomNames				domain
+pfset Geom.domain.ICPressure.RefPatch                 z-upper
+pfset Geom.domain.ICPressure.Value		        -1000
 
 #----------------------------------------------------------------
 # Outputs
@@ -496,23 +487,23 @@ pfset Solver.Nonlinear.VariableDz                     True
 pfset dzScale.GeomNames                               domain
 pfset dzScale.Type                                    nzList
 pfset dzScale.nzListNumber                            17
-pfset Cell.0.dzScale.Value                           200.0
-pfset Cell.1.dzScale.Value                           100.0
-pfset Cell.2.dzScale.Value                            50.0
-pfset Cell.3.dzScale.Value                            50.0
-pfset Cell.4.dzScale.Value                            20.0
-pfset Cell.5.dzScale.Value                            20.0
-pfset Cell.6.dzScale.Value                            20.0
-pfset Cell.7.dzScale.Value                            20.0
-pfset Cell.8.dzScale.Value                            10.0
-pfset Cell.9.dzScale.Value                             2.0
-pfset Cell.10.dzScale.Value                            2.0
-pfset Cell.11.dzScale.Value                            2.0
-pfset Cell.12.dzScale.Value                            2.0
-pfset Cell.13.dzScale.Value                            1.0
-pfset Cell.14.dzScale.Value                            0.6
-pfset Cell.15.dzScale.Value                            0.3
-pfset Cell.16.dzScale.Value                            0.1
+pfset Cell.0.dzScale.Value                             2.0
+pfset Cell.1.dzScale.Value                             1.0
+pfset Cell.2.dzScale.Value                             0.5
+pfset Cell.3.dzScale.Value                             0.5
+pfset Cell.4.dzScale.Value                             0.2
+pfset Cell.5.dzScale.Value                             0.2
+pfset Cell.6.dzScale.Value                             0.2
+pfset Cell.7.dzScale.Value                             0.2
+pfset Cell.8.dzScale.Value                             0.1
+pfset Cell.9.dzScale.Value                             0.02
+pfset Cell.10.dzScale.Value                            0.02
+pfset Cell.11.dzScale.Value                            0.02
+pfset Cell.12.dzScale.Value                            0.02
+pfset Cell.13.dzScale.Value                            0.01
+pfset Cell.14.dzScale.Value                            0.006
+pfset Cell.15.dzScale.Value                            0.003
+pfset Cell.16.dzScale.Value                            0.001
 
 pfset Solver.MaxIter                                  25000
 pfset Solver.Drop                                     1E-20
@@ -526,7 +517,7 @@ pfset Solver.Nonlinear.EtaChoice                         EtaConstant
 pfset Solver.Nonlinear.EtaValue                          0.001
 pfset Solver.Nonlinear.UseJacobian                       True 
 pfset Solver.Nonlinear.DerivativeEpsilon                 1e-16
-pfset Solver.Nonlinear.StepTol				 			                   1e-30
+pfset Solver.Nonlinear.StepTol	                         1e-30
 pfset Solver.Nonlinear.Globalization                     LineSearch
 pfset Solver.Linear.KrylovDimension                      70
 pfset Solver.Linear.MaxRestarts                          2
@@ -538,20 +529,20 @@ pfset Solver.Linear.Preconditioner.PCMatrixType          FullJacobian
 #pfset OverlandSpinupDampP1                           10.0
 #pfset OverlandSpinupDampP2                           0.1
 
-# pfset NetCDF.NumStepsPerFile			                     5
-# pfset NetCDF.CLMNumStepsPerFile                     24
-# pfset NetCDF.WritePressure				                      True
-# pfset NetCDF.WriteSaturation			                     True
-# pfset NetCDF.WriteMannings			     	                 True
-# pfset NetCDF.WriteSubsurface			                     True
-# pfset NetCDF.WriteSlopes				                        True
-# pfset NetCDF.WriteMask					                         True
-# pfset NetCDF.WriteDZMultiplier		    	               True
-# pfset NetCDF.WriteEvapTrans				                     True
-# pfset NetCDF.WriteEvapTransSum			                   True
-# pfset NetCDF.WriteOverlandSum			                    True
-# pfset NetCDF.WriteOverlandBCFlux		                  True
-# pfset NetCDF.WriteCLM					                          True
+ pfset NetCDF.NumStepsPerFile	                      24
+ pfset NetCDF.CLMNumStepsPerFile                      24
+ pfset NetCDF.WritePressure	                      True
+ pfset NetCDF.WriteSaturation	                      True
+ pfset NetCDF.WriteMannings                           True
+ pfset NetCDF.WriteSubsurface	                      True
+ pfset NetCDF.WriteSlopes	                      True
+ pfset NetCDF.WriteMask                               True
+ pfset NetCDF.WriteDZMultiplier                       True
+ pfset NetCDF.WriteEvapTrans	                      True
+ pfset NetCDF.WriteEvapTransSum                       True
+ pfset NetCDF.WriteOverlandSum	                      True
+ pfset NetCDF.WriteOverlandBCFlux	              True
+ pfset NetCDF.WriteCLM		                      True
 
 #-----------------------------------------------------------------------------
 # Distribute inputs
@@ -571,7 +562,7 @@ pfdist tucson.slopey.pfb
 #-----------------------------------------------------------------------------
 # Run Simulation 
 #-----------------------------------------------------------------------------
-set runname "tucson"
+set runname "sabino"
 puts $runname
 #pfwritedb $runname
 pfrun    $runname
