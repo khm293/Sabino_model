@@ -106,7 +106,7 @@ pfset Geom.domain.Patches             "x-lower x-upper y-lower y-upper z-lower z
  
 
 #-----------------------------------------------------------------------------
-# Permeability (values in m/hr)
+# hydraulic conductivity (values in m/hr)
 #-----------------------------------------------------------------------------
 pfset Geom.Perm.Names                     "domain s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12 s13 s14 s15 s16 g1 g2 g3 g4"
 
@@ -170,8 +170,8 @@ pfset Geom.g2.Perm.Value              0.059
 pfset Geom.g3.Perm.Type               Constant
 pfset Geom.g3.Perm.Value              0.2
  
-pfset Geom.g4.Perm.Type              Constant
-pfset Geom.g4.Perm.Value             0.68
+pfset Geom.g4.Perm.Type               Constant
+pfset Geom.g4.Perm.Value              0.68
 
 pfset Perm.TensorType                     TensorByGeom
 pfset Geom.Perm.TensorByGeom.Names        "domain"
