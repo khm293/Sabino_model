@@ -19,21 +19,21 @@ pfset Process.Topology.R 1
 #-----------------------------------------------------------------------------
 # Make a directory for the simulation and copy inputs into it
 #-----------------------------------------------------------------------------
-# exec mkdir "Outputs"
-cd "./Outputs"
+exec mkdir "Outputs_spinup_CLMoff_OFoff"
+cd "./Outputs_spinup_CLMoff_OFoff"
 
 # ParFlow Inputs
-file copy -force "../parflow_inputs/tucson.slopex.pfb" .
-file copy -force "../parflow_inputs/tucson.slopey.pfb" .
-file copy -force "../parflow_inputs/geology_indicator.pfb"   .
-file copy -force "../parflow_inputs/eff_recharge_0013.pfb"  .
+file copy -force "../../parflow_inputs/tucson.slopex.pfb" .
+file copy -force "../../parflow_inputs/tucson.slopey.pfb" .
+file copy -force "../../parflow_inputs/geology_indicator.pfb"   .
+file copy -force "../../parflow_inputs/eff_recharge_0013.pfb"  .
 # file copy -force "../../parflow_input/press.init.nc"  .
 # 
 # CLM Inputs
-# file copy -force "../clm_input/drv_clmin.dat" .
-# file copy -force "../clm_input/drv_vegp.dat"  .
-# file copy -force "../clm_input/drv_vegm.dat"  . 
-# file copy -force "../clm_input/metForcing.nc"  . 
+# file copy -force "../../clm_input/drv_clmin.dat" .
+# file copy -force "../../clm_input/drv_vegp.dat"  .
+# file copy -force "../../clm_input/drv_vegm.dat"  . 
+# file copy -force "../../clm_input/metForcing.nc"  . 
 
 # puts "Files Copied"
 
