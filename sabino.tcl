@@ -108,70 +108,34 @@ pfset Geom.domain.Patches             "x-lower x-upper y-lower y-upper z-lower z
 #-----------------------------------------------------------------------------
 # hydraulic conductivity (values in m/hr)
 #-----------------------------------------------------------------------------
-pfset Geom.Perm.Names                     "domain s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12 s13 s14 s15 s16 g1 g2 g3 g4"
+pfset Geom.Perm.Names                     "domain s1 s2 s4 s7 g1 g2 g3 g4"
 
 pfset Geom.domain.Perm.Type           Constant
-pfset Geom.domain.Perm.Value          0.00000002
+pfset Geom.domain.Perm.Value          0.126
 
 pfset Geom.s1.Perm.Type               Constant
-pfset Geom.s1.Perm.Value              0.269022595
+pfset Geom.s1.Perm.Value              0.36
  
 pfset Geom.s2.Perm.Type               Constant
-pfset Geom.s2.Perm.Value              0.043630356
- 
-pfset Geom.s3.Perm.Type               Constant
-pfset Geom.s3.Perm.Value              0.015841225
+pfset Geom.s2.Perm.Value              1.8
  
 pfset Geom.s4.Perm.Type               Constant
-pfset Geom.s4.Perm.Value              0.007582087
- 
-pfset Geom.s5.Perm.Type               Constant
-pfset Geom.s5.Perm.Value              0.01818816
-
-pfset Geom.s6.Perm.Type               Constant
-pfset Geom.s6.Perm.Value              0.005009435
+pfset Geom.s4.Perm.Value              0.0036
  
 pfset Geom.s7.Perm.Type               Constant
-pfset Geom.s7.Perm.Value              0.005492736
- 
-pfset Geom.s8.Perm.Type               Constant
-pfset Geom.s8.Perm.Value              0.004675077
- 
-pfset Geom.s9.Perm.Type               Constant
-pfset Geom.s9.Perm.Value              0.003386794
-
-pfset Geom.s10.Perm.Type               Constant
-pfset Geom.s10.Perm.Value              0.003386794
-
-pfset Geom.s11.Perm.Type               Constant
-pfset Geom.s11.Perm.Value              0.003386794
-
-pfset Geom.s12.Perm.Type               Constant
-pfset Geom.s12.Perm.Value              0.003386794
-
-pfset Geom.s13.Perm.Type               Constant
-pfset Geom.s13.Perm.Value              0.003386794
-
-pfset Geom.s14.Perm.Type               Constant
-pfset Geom.s14.Perm.Value              0.003386794
-
-pfset Geom.s15.Perm.Type               Constant
-pfset Geom.s15.Perm.Value              0.003386794
-
-pfset Geom.s16.Perm.Type               Constant
-pfset Geom.s16.Perm.Value              0.003386794
+pfset Geom.s7.Perm.Value              0.36
  
 pfset Geom.g1.Perm.Type               Constant
-pfset Geom.g1.Perm.Value              0.025
+pfset Geom.g1.Perm.Value              0.000036
  
 pfset Geom.g2.Perm.Type               Constant
-pfset Geom.g2.Perm.Value              0.059
+pfset Geom.g2.Perm.Value              0.0126
  
 pfset Geom.g3.Perm.Type               Constant
-pfset Geom.g3.Perm.Value              0.2
+pfset Geom.g3.Perm.Value              0.00036
  
 pfset Geom.g4.Perm.Type               Constant
-pfset Geom.g4.Perm.Value              0.68
+pfset Geom.g4.Perm.Value              0.0036
 
 pfset Perm.TensorType                     TensorByGeom
 pfset Geom.Perm.TensorByGeom.Names        "domain"
@@ -219,70 +183,25 @@ pfset TimeStep.Value             1.0
 #-----------------------------------------------------------------------------
 # Porosity
 #-----------------------------------------------------------------------------
-pfset Geom.Porosity.GeomNames             "domain s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12 s13 s14 s15 s16 g1 g2 g3 g4"
+pfset Geom.Porosity.GeomNames             "domain s2 g1 g2 g3 g4"
 
 pfset Geom.domain.Porosity.Type         Constant
-pfset Geom.domain.Porosity.Value        0.10
-
-pfset Geom.s1.Porosity.Type             Constant
-pfset Geom.s1.Porosity.Value            0.375
+pfset Geom.domain.Porosity.Value        0.3
  
 pfset Geom.s2.Porosity.Type             Constant
-pfset Geom.s2.Porosity.Value            0.39
- 
-pfset Geom.s3.Porosity.Type             Constant
-pfset Geom.s3.Porosity.Value            0.387
- 
-pfset Geom.s4.Porosity.Type             Constant
-pfset Geom.s4.Porosity.Value            0.439
- 
-pfset Geom.s5.Porosity.Type             Constant
-pfset Geom.s5.Porosity.Value            0.489
- 
-pfset Geom.s6.Porosity.Type             Constant
-pfset Geom.s6.Porosity.Value            0.399
- 
-pfset Geom.s7.Porosity.Type             Constant
-pfset Geom.s7.Porosity.Value            0.384
- 
-pfset Geom.s8.Porosity.Type             Constant
-pfset Geom.s8.Porosity.Value            0.482
- 
-pfset Geom.s9.Porosity.Type             Constant
-pfset Geom.s9.Porosity.Value            0.442
-
-pfset Geom.s10.Porosity.Type            Constant
-pfset Geom.s10.Porosity.Value           0.442
-
-pfset Geom.s11.Porosity.Type            Constant
-pfset Geom.s11.Porosity.Value           0.442
-
-pfset Geom.s12.Porosity.Type            Constant
-pfset Geom.s12.Porosity.Value           0.442
-
-pfset Geom.s13.Porosity.Type            Constant
-pfset Geom.s13.Porosity.Value           0.442
-
-pfset Geom.s14.Porosity.Type            Constant
-pfset Geom.s14.Porosity.Value           0.442
-
-pfset Geom.s15.Porosity.Type            Constant
-pfset Geom.s15.Porosity.Value           0.442
-
-pfset Geom.s16.Porosity.Type            Constant
-pfset Geom.s16.Porosity.Value           0.442
+pfset Geom.s2.Porosity.Value            0.4
 
 pfset Geom.g1.Porosity.Type             Constant
-pfset Geom.g1.Porosity.Value            0.442
+pfset Geom.g1.Porosity.Value            0.01
 
 pfset Geom.g2.Porosity.Type             Constant
-pfset Geom.g2.Porosity.Value            0.442
+pfset Geom.g2.Porosity.Value            0.2
 
 pfset Geom.g3.Porosity.Type             Constant
-pfset Geom.g3.Porosity.Value            0.442
+pfset Geom.g3.Porosity.Value            0.05
 
 pfset Geom.g4.Porosity.Type             Constant
-pfset Geom.g4.Porosity.Value            0.442
+pfset Geom.g4.Porosity.Value            0.2
 
 
 #-----------------------------------------------------------------------------
@@ -366,56 +285,40 @@ pfset Mannings.Geom.domain.Value                       5.52e-6
 pfset Phase.RelPerm.Type                  VanGenuchten
 pfset Phase.RelPerm.GeomNames             "domain s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12 s13 s14 s15 s16"
 
-pfset Geom.domain.RelPerm.Alpha           3.5
+pfset Geom.domain.RelPerm.Alpha           3
 pfset Geom.domain.RelPerm.N               2.0
 
 pfset Geom.s1.RelPerm.Alpha        3.548
-pfset Geom.s1.RelPerm.N            4.162
  
 pfset Geom.s2.RelPerm.Alpha        3.467
-pfset Geom.s2.RelPerm.N            2.738
  
 pfset Geom.s3.RelPerm.Alpha        2.692
-pfset Geom.s3.RelPerm.N            2.445
  
 pfset Geom.s4.RelPerm.Alpha        0.501
-pfset Geom.s4.RelPerm.N            2.659
  
 pfset Geom.s5.RelPerm.Alpha        0.661
-pfset Geom.s5.RelPerm.N            2.659
 
 pfset Geom.s6.RelPerm.Alpha        1.122
-pfset Geom.s6.RelPerm.N            2.479
  
 pfset Geom.s7.RelPerm.Alpha        2.089
-pfset Geom.s7.RelPerm.N            2.318
  
 pfset Geom.s8.RelPerm.Alpha        0.832
-pfset Geom.s8.RelPerm.N            2.514
  
 pfset Geom.s9.RelPerm.Alpha        1.585
-pfset Geom.s9.RelPerm.N            2.413
 
 pfset Geom.s10.RelPerm.Alpha        1.585
-pfset Geom.s10.RelPerm.N            2.413
 
 pfset Geom.s11.RelPerm.Alpha        1.585
-pfset Geom.s11.RelPerm.N            2.413
 
 pfset Geom.s12.RelPerm.Alpha        1.585
-pfset Geom.s12.RelPerm.N            2.413
 
 pfset Geom.s13.RelPerm.Alpha        1.585
-pfset Geom.s13.RelPerm.N            2.413
 
 pfset Geom.s14.RelPerm.Alpha        1.585
-pfset Geom.s14.RelPerm.N            2.413
 
 pfset Geom.s15.RelPerm.Alpha        1.585
-pfset Geom.s15.RelPerm.N            2.413
 
 pfset Geom.s16.RelPerm.Alpha        1.585
-pfset Geom.s16.RelPerm.N            2.413
 
 #-----------------------------------------------------------------------------
 # Saturation
@@ -423,90 +326,42 @@ pfset Geom.s16.RelPerm.N            2.413
 pfset Phase.Saturation.Type               VanGenuchten
 pfset Phase.Saturation.GeomNames          "domain s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12 s13 s14 s15 s16"
 
-pfset Geom.domain.Saturation.Alpha        3.5
-pfset Geom.domain.Saturation.N            2.
-pfset Geom.domain.Saturation.SRes         0.2
+pfset Geom.domain.Saturation.Alpha        3
+pfset Geom.domain.Saturation.N            2
+pfset Geom.domain.Saturation.SRes         0.001
 pfset Geom.domain.Saturation.SSat         1.0
 
 pfset Geom.s1.Saturation.Alpha        3.548
-pfset Geom.s1.Saturation.N            4.162
-pfset Geom.s1.Saturation.SRes         0.000001
-pfset Geom.s1.Saturation.SSat         1.0
 
 pfset Geom.s2.Saturation.Alpha        3.467
-pfset Geom.s2.Saturation.N            2.738
-pfset Geom.s2.Saturation.SRes         0.000001
-pfset Geom.s2.Saturation.SSat         1.0
  
 pfset Geom.s3.Saturation.Alpha        2.692
-pfset Geom.s3.Saturation.N            2.445
-pfset Geom.s3.Saturation.SRes         0.000001
-pfset Geom.s3.Saturation.SSat         1.0
  
 pfset Geom.s4.Saturation.Alpha        0.501
-pfset Geom.s4.Saturation.N            2.659
-pfset Geom.s4.Saturation.SRes         0.000001
-pfset Geom.s4.Saturation.SSat         1.0
  
 pfset Geom.s5.Saturation.Alpha        0.661
-pfset Geom.s5.Saturation.N            2.659
-pfset Geom.s5.Saturation.SRes         0.000001
-pfset Geom.s5.Saturation.SSat         1.0
  
 pfset Geom.s6.Saturation.Alpha        1.122
-pfset Geom.s6.Saturation.N            2.479
-pfset Geom.s6.Saturation.SRes         0.000001
-pfset Geom.s6.Saturation.SSat         1.0
  
 pfset Geom.s7.Saturation.Alpha        2.089
-pfset Geom.s7.Saturation.N            2.318
-pfset Geom.s7.Saturation.SRes         0.000001
-pfset Geom.s7.Saturation.SSat         1.0
  
 pfset Geom.s8.Saturation.Alpha        0.832
-pfset Geom.s8.Saturation.N            2.514
-pfset Geom.s8.Saturation.SRes         0.000001
-pfset Geom.s8.Saturation.SSat         1.0
  
 pfset Geom.s9.Saturation.Alpha        1.585
-pfset Geom.s9.Saturation.N            2.413
-pfset Geom.s9.Saturation.SRes         0.000001
-pfset Geom.s9.Saturation.SSat         1.0
 
 pfset Geom.s10.Saturation.Alpha        1.585
-pfset Geom.s10.Saturation.N            2.413
-pfset Geom.s10.Saturation.SRes         0.000001
-pfset Geom.s10.Saturation.SSat         1.0
 
 pfset Geom.s11.Saturation.Alpha        1.585
-pfset Geom.s11.Saturation.N            2.413
-pfset Geom.s11.Saturation.SRes         0.000001
-pfset Geom.s11.Saturation.SSat         1.0
 
 pfset Geom.s12.Saturation.Alpha        1.585
-pfset Geom.s12.Saturation.N            2.413
-pfset Geom.s12.Saturation.SRes         0.000001
-pfset Geom.s12.Saturation.SSat         1.0
 
 pfset Geom.s13.Saturation.Alpha        1.585
-pfset Geom.s13.Saturation.N            2.413
-pfset Geom.s13.Saturation.SRes         0.000001
-pfset Geom.s13.Saturation.SSat         1.0
 
 pfset Geom.s14.Saturation.Alpha        1.585
-pfset Geom.s14.Saturation.N            2.413
-pfset Geom.s14.Saturation.SRes         0.000001
-pfset Geom.s14.Saturation.SSat         1.0
 
 pfset Geom.s15.Saturation.Alpha        1.585
-pfset Geom.s15.Saturation.N            2.413
-pfset Geom.s15.Saturation.SRes         0.000001
-pfset Geom.s15.Saturation.SSat         1.0
 
 pfset Geom.s16.Saturation.Alpha        1.585
-pfset Geom.s16.Saturation.N            2.413
-pfset Geom.s16.Saturation.SRes         0.000001
-pfset Geom.s16.Saturation.SSat         1.0
 
 
 #-----------------------------------------------------------------------------
