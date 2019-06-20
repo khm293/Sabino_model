@@ -26,6 +26,7 @@ cd "./Outputs"
 file copy -force "../parflow_inputs/tucson.slopex.pfb" .
 file copy -force "../parflow_inputs/tucson.slopey.pfb" .
 file copy -force "../parflow_inputs/geology_indicator.pfb"   .
+file copy -force "../parflow_inputs/eff_recharge_0013.pfb"  .
 # file copy -force "../../parflow_input/press.init.nc"  .
 # 
 # CLM Inputs
@@ -33,7 +34,6 @@ file copy -force "../parflow_inputs/geology_indicator.pfb"   .
 # file copy -force "../clm_input/drv_vegp.dat"  .
 # file copy -force "../clm_input/drv_vegm.dat"  . 
 # file copy -force "../clm_input/metForcing.nc"  . 
-file copy -force "../clm_input/eff_recharge_0013.pfb"  .
 
 # puts "Files Copied"
 
@@ -175,10 +175,17 @@ pfset Gravity                             1.0
 pfset TimingInfo.BaseUnit        1.0
 pfset TimingInfo.StartCount      0.0
 pfset TimingInfo.StartTime       0.0
-pfset TimingInfo.StopTime        8784.0
-pfset TimingInfo.DumpInterval    24.0
-pfset TimeStep.Type              Constant
-pfset TimeStep.Value             1.0
+pfset TimingInfo.StopTime        100000.0
+pfset TimingInfo.DumpInterval    1000.0
+
+#pfset TimeStep.Type              Constant
+#pfset TimeStep.Value             1.0
+
+pfset TimeStep.Type              Growth
+pfset TimeStep.InitialStep       0.0001
+pfset TimeStep.GrowthFactor      1.4
+pfset TimeStep.MaxStep           1.0
+pfset TimeStep.MinStep           0.0001
 
 #-----------------------------------------------------------------------------
 # Porosity
@@ -254,9 +261,9 @@ pfset Patch.y-upper.BCPressure.Cycle		      "constant"
 pfset Patch.y-upper.BCPressure.alltime.Value	      0.0
 
 ## overland flow boundary condition with spatially-distributed recharge from USGS report
-pfset Patch.z-upper.BCPressure.Type		                OverlandFlowPFB
-pfset Patch.z-upper.BCPressure.Cycle		               "constant"
-pfset Patch.z-upper.BCPressure.alltime.FileName	     "eff_recharge_0013.pfb"
+pfset Patch.z-upper.BCPressure.Type		             OverlandFlowPFB
+pfset Patch.z-upper.BCPressure.Cycle		            "constant"
+pfset Patch.z-upper.BCPressure.alltime.Value	      0.0
 
 #-----------------------------------------------------------------------------
 # Topo slopes in x-direction
@@ -283,85 +290,61 @@ pfset Mannings.Geom.domain.Value                       5.52e-6
 # Relative Permeability
 #-----------------------------------------------------------------------------
 pfset Phase.RelPerm.Type                  VanGenuchten
-pfset Phase.RelPerm.GeomNames             "domain s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12 s13 s14 s15 s16"
+pfset Phase.RelPerm.GeomNames             "domain s2 s3 s4 s7 s9 s14 g1 g2 g3 g4"
 
-pfset Geom.domain.RelPerm.Alpha           3
+pfset Geom.domain.RelPerm.Alpha           2.691
 pfset Geom.domain.RelPerm.N               2.0
 
-pfset Geom.s1.RelPerm.Alpha        3.548
- 
-pfset Geom.s2.RelPerm.Alpha        3.467
- 
-pfset Geom.s3.RelPerm.Alpha        2.692
- 
-pfset Geom.s4.RelPerm.Alpha        0.501
- 
-pfset Geom.s5.RelPerm.Alpha        0.661
+pfset Geom.s2.RelPerm.N             3
 
-pfset Geom.s6.RelPerm.Alpha        1.122
+pfset Geom.s3.RelPerm.Alpha         3
+
+pfset Geom.s4.RelPerm.Alpha         0.436
  
-pfset Geom.s7.RelPerm.Alpha        2.089
+pfset Geom.s7.RelPerm.Alpha         3
  
-pfset Geom.s8.RelPerm.Alpha        0.832
- 
-pfset Geom.s9.RelPerm.Alpha        1.585
-
-pfset Geom.s10.RelPerm.Alpha        1.585
-
-pfset Geom.s11.RelPerm.Alpha        1.585
-
-pfset Geom.s12.RelPerm.Alpha        1.585
-
-pfset Geom.s13.RelPerm.Alpha        1.585
+pfset Geom.s9.RelPerm.Alpha         1.585
 
 pfset Geom.s14.RelPerm.Alpha        1.585
 
-pfset Geom.s15.RelPerm.Alpha        1.585
+pfset Geom.g1.RelPerm.Alpha         3
 
-pfset Geom.s16.RelPerm.Alpha        1.585
+pfset Geom.g2.RelPerm.Alpha         3
+
+pfset Geom.g3.RelPerm.Alpha         3
+
+pfset Geom.g4.RelPerm.Alpha         3
 
 #-----------------------------------------------------------------------------
 # Saturation
 #-----------------------------------------------------------------------------
 pfset Phase.Saturation.Type               VanGenuchten
-pfset Phase.Saturation.GeomNames          "domain s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12 s13 s14 s15 s16"
+pfset Phase.Saturation.GeomNames          "domain s2 s3 s4 s7 s9 s14 g1 g2 g3 g4"
 
-pfset Geom.domain.Saturation.Alpha        3
+pfset Geom.domain.Saturation.Alpha        2.691
 pfset Geom.domain.Saturation.N            2
 pfset Geom.domain.Saturation.SRes         0.001
 pfset Geom.domain.Saturation.SSat         1.0
 
-pfset Geom.s1.Saturation.Alpha        3.548
-
-pfset Geom.s2.Saturation.Alpha        3.467
+pfset Geom.s2.Saturation.N            3
  
-pfset Geom.s3.Saturation.Alpha        2.692
+pfset Geom.s3.Saturation.Alpha        3
  
-pfset Geom.s4.Saturation.Alpha        0.501
+pfset Geom.s4.Saturation.Alpha        0.436
  
-pfset Geom.s5.Saturation.Alpha        0.661
- 
-pfset Geom.s6.Saturation.Alpha        1.122
- 
-pfset Geom.s7.Saturation.Alpha        2.089
- 
-pfset Geom.s8.Saturation.Alpha        0.832
+pfset Geom.s7.Saturation.Alpha        3
  
 pfset Geom.s9.Saturation.Alpha        1.585
 
-pfset Geom.s10.Saturation.Alpha        1.585
+pfset Geom.s14.Saturation.Alpha       1.585
 
-pfset Geom.s11.Saturation.Alpha        1.585
+pfset Geom.g1.Saturation.Alpha        3
 
-pfset Geom.s12.Saturation.Alpha        1.585
+pfset Geom.g2.Saturation.Alpha        3
 
-pfset Geom.s13.Saturation.Alpha        1.585
+pfset Geom.g3.Saturation.Alpha        3
 
-pfset Geom.s14.Saturation.Alpha        1.585
-
-pfset Geom.s15.Saturation.Alpha        1.585
-
-pfset Geom.s16.Saturation.Alpha        1.585
+pfset Geom.g4.Saturation.Alpha        3
 
 
 #-----------------------------------------------------------------------------
@@ -374,6 +357,7 @@ pfset PhaseSources.water.Geom.domain.Value            0.0
 #----------------------------------------------------------------
 # CLM Settings:
 # ------------------------------------------------------------
+#for spin-up runs, CLM is initially turned off
 pfset Solver.LSM                                        none
 pfset Solver.CLM.CLMFileDir                           "clm_output/"
 pfset Solver.CLM.Print1dOut                           False
@@ -393,20 +377,23 @@ pfset Solver.CLM.WiltingPoint                         0.12
 pfset Solver.CLM.FieldCapacity                        0.98
 pfset Solver.CLM.IrrigationType                       none
 
+pfset Solver.EvapTransFile                            True
+pfset Solver.EvapTrans.FileName                       "eff_recharge_0013.pfb"
+
 #---------------------------------------------------------
 # Initial conditions: water pressure
 #---------------------------------------------------------
 # pfset ICPressure.Type                                 NCFile
 # pfset ICPressure.GeomNames                            domain
-# pfset Geom.domain.ICPressure.RefPatch                   z-upper
-# pfset Geom.domain.ICPressure.FileName                   press.init.nc
+# pfset Geom.domain.ICPressure.RefPatch                 z-upper
+# pfset Geom.domain.ICPressure.FileName                 press.init.nc
 
-#pfset ICPressure.Type	 	                       PFBFile
+#pfset ICPressure.Type	 	                               PFBFile
 #pfset ICPressure.GeomNames                             domain
 #pfset Geom.domain.ICPressure.RefPatch                  z-upper
 #pfset Geom.domain.ICPressure.FileName                  tucson.out.press.00030.pfb
 
-pfset ICPressure.Type					                            Constant
+pfset ICPressure.Type					                            HydroStaticPatch
 pfset ICPressure.GeomNames			                        	domain
 pfset Geom.domain.ICPressure.RefPatch                 z-lower
 pfset Geom.domain.ICPressure.Value		                  200.0
@@ -415,10 +402,10 @@ pfset Geom.domain.ICPressure.Value		                  200.0
 # Outputs
 # ------------------------------------------------------------
 #Writing output (all pfb):
-pfset Solver.PrintSubsurfData                         False
+pfset Solver.PrintSubsurfData                         True
 pfset Solver.PrintPressure                            True
-pfset Solver.PrintSaturation                          False
-pfset Solver.PrintMask                                False
+pfset Solver.PrintSaturation                          True
+pfset Solver.PrintMask                                True
 
 pfset Solver.WriteCLMBinary                           False
 pfset Solver.PrintCLM                                 False
@@ -427,7 +414,7 @@ pfset Solver.WriteSiloMannings                        False
 pfset Solver.WriteSiloMask                            False
 pfset Solver.WriteSiloSlopes                          False
 pfset Solver.WriteSiloSubsurfData                     False
-pfset Solver.WriteSiloPressure                        True
+pfset Solver.WriteSiloPressure                        False
 pfset Solver.WriteSiloSaturation                      False
 pfset Solver.WriteSiloEvapTrans                       False
 pfset Solver.WriteSiloEvapTransSum                    False
@@ -488,24 +475,25 @@ pfset Solver.Linear.MaxRestarts                          2
 pfset Solver.Linear.Preconditioner                       PFMG
 pfset Solver.Linear.Preconditioner.PCMatrixType          FullJacobian
 
+#keys for first round of spin-up
 pfset OverlandFlowSpinUp                             1
 pfset OverlandSpinupDampP1                           10.0
 pfset OverlandSpinupDampP2                           0.1
 
  pfset NetCDF.NumStepsPerFile	                         24
  pfset NetCDF.CLMNumStepsPerFile                       24
- pfset NetCDF.WritePressure	                           True
- pfset NetCDF.WriteSaturation	                         True
- pfset NetCDF.WriteMannings                            True
- pfset NetCDF.WriteSubsurface	                         True
- pfset NetCDF.WriteSlopes	                             True
- pfset NetCDF.WriteMask                                True
- pfset NetCDF.WriteDZMultiplier                        True
- pfset NetCDF.WriteEvapTrans	                          True
- pfset NetCDF.WriteEvapTransSum                        True
- pfset NetCDF.WriteOverlandSum	                        True
- pfset NetCDF.WriteOverlandBCFlux	                     True
- pfset NetCDF.WriteCLM		                               True
+ pfset NetCDF.WritePressure	                           False
+ pfset NetCDF.WriteSaturation	                         False
+ pfset NetCDF.WriteMannings                            False
+ pfset NetCDF.WriteSubsurface	                         False
+ pfset NetCDF.WriteSlopes	                             False
+ pfset NetCDF.WriteMask                                False
+ pfset NetCDF.WriteDZMultiplier                        False
+ pfset NetCDF.WriteEvapTrans	                          False
+ pfset NetCDF.WriteEvapTransSum                        False
+ pfset NetCDF.WriteOverlandSum	                        False
+ pfset NetCDF.WriteOverlandBCFlux	                     False
+ pfset NetCDF.WriteCLM		                               False
 
 #-----------------------------------------------------------------------------
 # Distribute inputs
