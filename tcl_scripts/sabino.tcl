@@ -35,7 +35,7 @@ file copy -force "../../parflow_inputs/eff_recharge_0013.pfb"  .
 # file copy -force "../../clm_input/drv_vegm.dat"  . 
 # file copy -force "../../clm_input/metForcing.nc"  . 
 
-# puts "Files Copied"
+ puts "Files Copied"
 
 #-----------------------------------------------------------------------------
 # Computational Grid
@@ -73,7 +73,7 @@ pfset Geom.domain.Lower.Z                        0.0
  
 pfset Geom.domain.Upper.X                        22140.0
 pfset Geom.domain.Upper.Y                        16020.0
-pfset Geom.domain.Upper.Z                         17.0
+pfset Geom.domain.Upper.Z                         1700.0
 pfset Geom.domain.Patches             "x-lower x-upper y-lower y-upper z-lower z-upper"
 
 #-----------------------------------------------------------------------------
@@ -175,7 +175,7 @@ pfset Gravity                             1.0
 pfset TimingInfo.BaseUnit        1.0
 pfset TimingInfo.StartCount      0.0
 pfset TimingInfo.StartTime       0.0
-pfset TimingInfo.StopTime        100000.0
+pfset TimingInfo.StopTime        1000000.0
 pfset TimingInfo.DumpInterval    1000.0
 
 #pfset TimeStep.Type              Constant
@@ -184,7 +184,7 @@ pfset TimingInfo.DumpInterval    1000.0
 pfset TimeStep.Type              Growth
 pfset TimeStep.InitialStep       0.0001
 pfset TimeStep.GrowthFactor      1.4
-pfset TimeStep.MaxStep           1.0
+pfset TimeStep.MaxStep           1000
 pfset TimeStep.MinStep           0.0001
 
 #-----------------------------------------------------------------------------
@@ -261,7 +261,7 @@ pfset Patch.y-upper.BCPressure.Cycle		      "constant"
 pfset Patch.y-upper.BCPressure.alltime.Value	      0.0
 
 ## overland flow boundary condition with spatially-distributed recharge from USGS report
-pfset Patch.z-upper.BCPressure.Type		             OverlandFlowPFB
+pfset Patch.z-upper.BCPressure.Type		             OverlandFlow
 pfset Patch.z-upper.BCPressure.Cycle		            "constant"
 pfset Patch.z-upper.BCPressure.alltime.Value	      0.0
 
@@ -295,25 +295,35 @@ pfset Phase.RelPerm.GeomNames             "domain s2 s3 s4 s7 s9 s14 g1 g2 g3 g4
 pfset Geom.domain.RelPerm.Alpha           2.691
 pfset Geom.domain.RelPerm.N               2.0
 
+pfset Geom.s2.RelPerm.Alpha         2.691
 pfset Geom.s2.RelPerm.N             3
 
 pfset Geom.s3.RelPerm.Alpha         3
+pfset Geom.s3.RelPerm.N             2
 
 pfset Geom.s4.RelPerm.Alpha         0.436
+pfset Geom.s4.RelPerm.N             2
  
 pfset Geom.s7.RelPerm.Alpha         3
+pfset Geom.s7.RelPerm.N             2
  
 pfset Geom.s9.RelPerm.Alpha         1.585
+pfset Geom.s9.RelPerm.N             2
 
 pfset Geom.s14.RelPerm.Alpha        1.585
+pfset Geom.s14.RelPerm.N             2
 
 pfset Geom.g1.RelPerm.Alpha         3
+pfset Geom.g1.RelPerm.N             2
 
 pfset Geom.g2.RelPerm.Alpha         3
+pfset Geom.g2.RelPerm.N             2
 
 pfset Geom.g3.RelPerm.Alpha         3
+pfset Geom.g3.RelPerm.N             2
 
 pfset Geom.g4.RelPerm.Alpha         3
+pfset Geom.g4.RelPerm.N             2
 
 #-----------------------------------------------------------------------------
 # Saturation
@@ -326,26 +336,35 @@ pfset Geom.domain.Saturation.N            2
 pfset Geom.domain.Saturation.SRes         0.001
 pfset Geom.domain.Saturation.SSat         1.0
 
+pfset Geom.s2.Saturation.Alpha        2.691
 pfset Geom.s2.Saturation.N            3
  
 pfset Geom.s3.Saturation.Alpha        3
+pfset Geom.s3.Saturation.N            2
  
 pfset Geom.s4.Saturation.Alpha        0.436
+pfset Geom.s4.Saturation.N            2
  
 pfset Geom.s7.Saturation.Alpha        3
+pfset Geom.s7.Saturation.N            2
  
 pfset Geom.s9.Saturation.Alpha        1.585
+pfset Geom.s9.Saturation.N            2
 
 pfset Geom.s14.Saturation.Alpha       1.585
+pfset Geom.s14.Saturation.N            2
 
 pfset Geom.g1.Saturation.Alpha        3
+pfset Geom.g1.Saturation.N            2
 
 pfset Geom.g2.Saturation.Alpha        3
+pfset Geom.g2.Saturation.N            2
 
 pfset Geom.g3.Saturation.Alpha        3
+pfset Geom.g3.Saturation.N            2
 
 pfset Geom.g4.Saturation.Alpha        3
-
+pfset Geom.g4.Saturation.N            2
 
 #-----------------------------------------------------------------------------
 # Phase sources:
@@ -396,7 +415,7 @@ pfset Solver.EvapTrans.FileName                       "eff_recharge_0013.pfb"
 pfset ICPressure.Type					                            HydroStaticPatch
 pfset ICPressure.GeomNames			                        	domain
 pfset Geom.domain.ICPressure.RefPatch                 z-lower
-pfset Geom.domain.ICPressure.Value		                  200.0
+pfset Geom.domain.ICPressure.Value		                  100.0
 
 #----------------------------------------------------------------
 # Outputs
