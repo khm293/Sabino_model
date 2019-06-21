@@ -338,33 +338,53 @@ pfset Geom.domain.Saturation.SSat         1.0
 
 pfset Geom.s2.Saturation.Alpha        2.691
 pfset Geom.s2.Saturation.N            3
+pfset Geom.s2.Saturation.SRes         0.001
+pfset Geom.s2.Saturation.SSat         1.0
  
 pfset Geom.s3.Saturation.Alpha        3
 pfset Geom.s3.Saturation.N            2
+pfset Geom.s3.Saturation.SRes         0.001
+pfset Geom.s3.Saturation.SSat         1.0
  
 pfset Geom.s4.Saturation.Alpha        0.436
 pfset Geom.s4.Saturation.N            2
+pfset Geom.s4.Saturation.SRes         0.001
+pfset Geom.s4.Saturation.SSat         1.0
  
 pfset Geom.s7.Saturation.Alpha        3
 pfset Geom.s7.Saturation.N            2
+pfset Geom.s7.Saturation.SRes         0.001
+pfset Geom.s7.Saturation.SSat         1.0
  
 pfset Geom.s9.Saturation.Alpha        1.585
 pfset Geom.s9.Saturation.N            2
+pfset Geom.s9.Saturation.SRes         0.001
+pfset Geom.s9.Saturation.SSat         1.0
 
 pfset Geom.s14.Saturation.Alpha       1.585
 pfset Geom.s14.Saturation.N            2
+pfset Geom.s14.Saturation.SRes         0.001
+pfset Geom.s14.Saturation.SSat         1.0
 
 pfset Geom.g1.Saturation.Alpha        3
 pfset Geom.g1.Saturation.N            2
+pfset Geom.g1.Saturation.SRes         0.001
+pfset Geom.g1.Saturation.SSat         1.0
 
 pfset Geom.g2.Saturation.Alpha        3
 pfset Geom.g2.Saturation.N            2
+pfset Geom.g2.Saturation.SRes         0.001
+pfset Geom.g2.Saturation.SSat         1.0
 
 pfset Geom.g3.Saturation.Alpha        3
 pfset Geom.g3.Saturation.N            2
+pfset Geom.g3.Saturation.SRes         0.001
+pfset Geom.g3.Saturation.SSat         1.0
 
 pfset Geom.g4.Saturation.Alpha        3
 pfset Geom.g4.Saturation.N            2
+pfset Geom.g4.Saturation.SRes         0.001
+pfset Geom.g4.Saturation.SSat         1.0
 
 #-----------------------------------------------------------------------------
 # Phase sources:
