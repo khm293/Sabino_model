@@ -432,10 +432,10 @@ pfset Solver.EvapTrans.FileName                       "eff_recharge_0013.pfb"
 #pfset Geom.domain.ICPressure.RefPatch                  z-upper
 #pfset Geom.domain.ICPressure.FileName                  tucson.out.press.00030.pfb
 
-pfset ICPressure.Type					                            HydroStaticPatch
-pfset ICPressure.GeomNames			                        	domain
-pfset Geom.domain.ICPressure.RefPatch                 z-lower
-pfset Geom.domain.ICPressure.Value		                  100.0
+pfset ICPressure.Type                                   HydroStaticPatch
+pfset ICPressure.GeomNames                              domain
+pfset Geom.domain.ICPressure.Value                      0.0
+pfset Geom.domain.ICPressure.RefPatch                   z-lower
 
 #----------------------------------------------------------------
 # Outputs
