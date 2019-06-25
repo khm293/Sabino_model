@@ -1,13 +1,12 @@
 ###========================================
 #!/bin/bash
  
-#PBS -q debug
-#PBS -l select=1:ncpus=1:mem=6gb:pcmem=6gb
+#PBS -q standard
+#PBS -l select=3:ncpus=28:mem=168gb:pcmem=6gb
 #PBS -N spin_up_CLMoff_OFoff
 #PBS -W group_list=jenmc
 #PBS -l place=pack:shared
-#PBS -l walltime=00:10:00
-#PBS -l cput=00:10:00
+#PBS -l walltime=12:00:00
  
 cd /home/u4/khmarkovich/Sabino_model/tcl_scripts/
  
