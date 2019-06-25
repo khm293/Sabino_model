@@ -12,22 +12,22 @@ pfset     FileVersion    4
 #-----------------------------------------------------------------------------
 # Set Processor topology 
 #-----------------------------------------------------------------------------
-pfset Process.Topology.P 1
-pfset Process.Topology.Q 1
+pfset Process.Topology.P 6
+pfset Process.Topology.Q 14
 pfset Process.Topology.R 1
 
 #-----------------------------------------------------------------------------
 # Make a directory for the simulation and copy inputs into it
 #-----------------------------------------------------------------------------
-exec mkdir "Outputs_spinup_CLMoff_OFoff"
-cd "./Outputs_spinup_CLMoff_OFoff"
+#exec mkdir "Outputs_spinup_CLMoff_OFoff"
+cd "/extra/khmarkovich/Outputs_spinup_CLMoff_OFoff"
 
 # ParFlow Inputs
-file copy -force "../../parflow_inputs/tucson.slopex.pfb" .
-file copy -force "../../parflow_inputs/tucson.slopey.pfb" .
-file copy -force "../../parflow_inputs/geology_indicator.pfb"   .
-file copy -force "../../parflow_inputs/eff_recharge_0013.pfb"  .
-# file copy -force "../../parflow_input/press.init.nc"  .
+file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/tucson.slopex.pfb" .
+file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/tucson.slopey.pfb" .
+file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/geology_indicator.pfb"   .
+file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/eff_recharge_0013.pfb"  .
+
 # 
 # CLM Inputs
 # file copy -force "../../clm_input/drv_clmin.dat" .
@@ -178,14 +178,14 @@ pfset TimingInfo.StartTime       0.0
 pfset TimingInfo.StopTime        1000000.0
 pfset TimingInfo.DumpInterval    1000.0
 
-#pfset TimeStep.Type              Constant
-#pfset TimeStep.Value             1.0
+pfset TimeStep.Type              Constant
+pfset TimeStep.Value             1.0
 
-pfset TimeStep.Type              Growth
-pfset TimeStep.InitialStep       0.0001
-pfset TimeStep.GrowthFactor      1.4
-pfset TimeStep.MaxStep           1000
-pfset TimeStep.MinStep           0.0001
+#pfset TimeStep.Type              Growth
+#pfset TimeStep.InitialStep       0.0001
+#pfset TimeStep.GrowthFactor      1.01
+#pfset TimeStep.MaxStep           10
+#pfset TimeStep.MinStep           0.0001
 
 #-----------------------------------------------------------------------------
 # Porosity
@@ -250,7 +250,7 @@ pfset Patch.y-lower.BCPressure.alltime.Value	      0.0
 
 pfset Patch.z-lower.BCPressure.Type		      FluxConst
 pfset Patch.z-lower.BCPressure.Cycle		      "constant"
-pfset Patch.z-lower.BCPressure.alltime.Value	      0.0
+pfset Patch.z-lower.BCPressure.alltime.Value	       0.00001
 
 pfset Patch.x-upper.BCPressure.Type		      FluxConst
 pfset Patch.x-upper.BCPressure.Cycle		      "constant"
@@ -427,16 +427,16 @@ pfset Solver.EvapTrans.FileName                       "eff_recharge_0013.pfb"
 # pfset Geom.domain.ICPressure.RefPatch                 z-upper
 # pfset Geom.domain.ICPressure.FileName                 press.init.nc
 
-#pfset ICPressure.Type	 	                               PFBFile
-#pfset ICPressure.GeomNames                             domain
-#pfset Geom.domain.ICPressure.RefPatch                  z-upper
-#pfset Geom.domain.ICPressure.FileName                  tucson.out.press.00030.pfb
+pfset ICPressure.Type	 	                               PFBFile
+pfset ICPressure.GeomNames                             domain
+pfset Geom.domain.ICPressure.RefPatch                  z-upper
+pfset Geom.domain.ICPressure.FileName                  sabino.out.press.00012.pfb
 
-pfset ICPressure.Type                                   HydroStaticPatch
-pfset ICPressure.GeomNames                              domain
-pfset Geom.domain.ICPressure.Value                      0.0
-pfset Geom.domain.ICPressure.RefGeom                    domain
-pfset Geom.domain.ICPressure.RefPatch                   z-lower
+#pfset ICPressure.Type                                   HydroStaticPatch
+#pfset ICPressure.GeomNames                              domain
+#pfset Geom.domain.ICPressure.Value                      0.0
+#pfset Geom.domain.ICPressure.RefGeom                    domain
+#pfset Geom.domain.ICPressure.RefPatch                   z-lower
 
 #----------------------------------------------------------------
 # Outputs
@@ -500,7 +500,7 @@ pfset Solver.Drop                                     1E-20
 pfset Solver.AbsTol                                   1E-8
 pfset Solver.MaxConvergenceFailures                   8
 pfset Solver.Nonlinear.MaxIter                        80
-pfset Solver.Nonlinear.ResidualTol                    1e-6
+pfset Solver.Nonlinear.ResidualTol                    2e-6
 
 ## new solver settings for Terrain Following Grid
 pfset Solver.Nonlinear.EtaChoice                         EtaConstant
@@ -549,6 +549,7 @@ pfset ComputationalGrid.NY                178
 pfset ComputationalGrid.NZ                17
 pfdist geology_indicator.pfb
 pfdist eff_recharge_0013.pfb
+pfdist sabino.out.press.00012.pfb
 
 #-----------------------------------------------------------------------------
 # Run Simulation 
@@ -567,6 +568,7 @@ pfundist tucson.slopex.pfb
 pfundist tucson.slopey.pfb
 pfundist geology_indicator.pfb
 pfundist eff_recharge_0013.pfb
+pfundist sabino.out.press.00012.pfb
 
 puts "ParFlow run Complete"
 
