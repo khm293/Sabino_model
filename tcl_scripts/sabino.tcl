@@ -12,21 +12,21 @@ pfset     FileVersion    4
 #-----------------------------------------------------------------------------
 # Set Processor topology 
 #-----------------------------------------------------------------------------
-pfset Process.Topology.P 6
-pfset Process.Topology.Q 14
+pfset Process.Topology.P 34
+pfset Process.Topology.Q 10
 pfset Process.Topology.R 1
 
 #-----------------------------------------------------------------------------
 # Make a directory for the simulation and copy inputs into it
 #-----------------------------------------------------------------------------
 #exec mkdir "Outputs_spinup_CLMoff_OFoff"
-cd "/extra/khmarkovich/Outputs_spinup_CLMoff_OFoff"
+cd "/scratch/06175/khm293/Outputs_CLMoff_OFoff/"
 
 # ParFlow Inputs
-file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/tucson.slopex.pfb" .
-file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/tucson.slopey.pfb" .
-file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/geology_indicator.pfb"   .
-file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/eff_recharge_0013.pfb"  .
+file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopex.pfb" .
+file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopey.pfb" .
+file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/geology_indicator.pfb"   .
+file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/eff_recharge_0013.pfb"  .
 
 # 
 # CLM Inputs
@@ -250,7 +250,7 @@ pfset Patch.y-lower.BCPressure.alltime.Value	      0.0
 
 pfset Patch.z-lower.BCPressure.Type		      FluxConst
 pfset Patch.z-lower.BCPressure.Cycle		      "constant"
-pfset Patch.z-lower.BCPressure.alltime.Value	       0.00001
+pfset Patch.z-lower.BCPressure.alltime.Value	       0.00002
 
 pfset Patch.x-upper.BCPressure.Type		      FluxConst
 pfset Patch.x-upper.BCPressure.Cycle		      "constant"
@@ -430,7 +430,7 @@ pfset Solver.EvapTrans.FileName                       "eff_recharge_0013.pfb"
 pfset ICPressure.Type	 	                               PFBFile
 pfset ICPressure.GeomNames                             domain
 pfset Geom.domain.ICPressure.RefPatch                  z-upper
-pfset Geom.domain.ICPressure.FileName                  sabino.out.press.00012.pfb
+pfset Geom.domain.ICPressure.FileName                  sabino.out.press.00001.pfb
 
 #pfset ICPressure.Type                                   HydroStaticPatch
 #pfset ICPressure.GeomNames                              domain
@@ -549,7 +549,7 @@ pfset ComputationalGrid.NY                178
 pfset ComputationalGrid.NZ                17
 pfdist geology_indicator.pfb
 pfdist eff_recharge_0013.pfb
-pfdist sabino.out.press.00012.pfb
+pfdist sabino.out.press.00001.pfb
 
 #-----------------------------------------------------------------------------
 # Run Simulation 
@@ -568,7 +568,7 @@ pfundist tucson.slopex.pfb
 pfundist tucson.slopey.pfb
 pfundist geology_indicator.pfb
 pfundist eff_recharge_0013.pfb
-pfundist sabino.out.press.00012.pfb
+pfundist sabino.out.press.00001.pfb
 
 puts "ParFlow run Complete"
 
