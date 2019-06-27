@@ -1,4 +1,5 @@
 # SCRIPT TO RUN SABINO DOMAIN WITH TERRAIN-FOLLOWING GRID AND VARIABLE DZ
+#spin up keys are ON. Overland flow is dampened, and CLM is off. 
 # DETAILS:
 # Arugments are 1) runname 2) year
 
