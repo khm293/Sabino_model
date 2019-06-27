@@ -1,5 +1,4 @@
 # SCRIPT TO RUN SABINO DOMAIN WITH TERRAIN-FOLLOWING GRID AND VARIABLE DZ
-#spin up keys are ON. Overland flow is dampened, and CLM is off. 
 # DETAILS:
 # Arugments are 1) runname 2) year
 
@@ -13,8 +12,8 @@ pfset     FileVersion    4
 #-----------------------------------------------------------------------------
 # Set Processor topology 
 #-----------------------------------------------------------------------------
-pfset Process.Topology.P 34
-pfset Process.Topology.Q 10
+pfset Process.Topology.P 24
+pfset Process.Topology.Q 24
 pfset Process.Topology.R 1
 
 #-----------------------------------------------------------------------------
@@ -26,8 +25,9 @@ cd "/scratch/06175/khm293/Outputs_CLMoff_OFoff/"
 # ParFlow Inputs
 file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopex.pfb" .
 file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopey.pfb" .
-file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/geology_indicator.pfb"   .
-file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/eff_recharge_0013.pfb"  .
+file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/geology_indicator.pfb" .
+file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/eff_recharge_0013.pfb" .
+file copy -force "/scratch/06175/khm293/Outputs_CLMoff_OFoff/sabino.out.press.00000.pfb" .
 
 # 
 # CLM Inputs
@@ -251,7 +251,7 @@ pfset Patch.y-lower.BCPressure.alltime.Value	      0.0
 
 pfset Patch.z-lower.BCPressure.Type		      FluxConst
 pfset Patch.z-lower.BCPressure.Cycle		      "constant"
-pfset Patch.z-lower.BCPressure.alltime.Value	       0.00002
+pfset Patch.z-lower.BCPressure.alltime.Value	       0.0
 
 pfset Patch.x-upper.BCPressure.Type		      FluxConst
 pfset Patch.x-upper.BCPressure.Cycle		      "constant"
@@ -517,9 +517,9 @@ pfset Solver.Linear.Preconditioner                       PFMG
 pfset Solver.Linear.Preconditioner.PCMatrixType          FullJacobian
 
 #keys for first round of spin-up
-pfset OverlandFlowSpinUp                             1
-pfset OverlandSpinupDampP1                           10.0
-pfset OverlandSpinupDampP2                           0.1
+pfset OverlandFlowSpinUp                              0
+#pfset OverlandSpinupDampP1                           10.0
+#pfset OverlandSpinupDampP2                           0.1
 
  pfset NetCDF.NumStepsPerFile	                         24
  pfset NetCDF.CLMNumStepsPerFile                       24
