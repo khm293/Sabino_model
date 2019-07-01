@@ -12,28 +12,28 @@ pfset     FileVersion    4
 #-----------------------------------------------------------------------------
 # Set Processor topology 
 #-----------------------------------------------------------------------------
-pfset Process.Topology.P 7
-pfset Process.Topology.Q 4
+pfset Process.Topology.P 16
+pfset Process.Topology.Q 15
 pfset Process.Topology.R 1
 
 #-----------------------------------------------------------------------------
 # Make a directory for the simulation and copy inputs into it
 #-----------------------------------------------------------------------------
 #exec mkdir "Outputs_spinup_CLMoff_OFoff"
-#cd "/scratch/06175/khm293/Outputs_CLMoff_OFoff/"
-cd "/extra/khmarkovich/Outputs_spinup_CLMoff_OFoff/" 
+cd "/scratch/06175/khm293/Outputs_CLMoff_OFoff/"
+#cd "/extra/khmarkovich/Outputs_spinup_CLMoff_OFoff/" 
 
 # ParFlow Inputs
-#file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopex.pfb" .
-#file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopey.pfb" .
-#file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/geology_indicator_new.pfb" .
-#file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/eff_recharge_0013.pfb" .
-#file copy -force "/scratch/06175/khm293/Outputs_CLMoff_OFoff/sabino.out.press.00000.pfb" .
+file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopex.pfb" .
+file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopey.pfb" .
+file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/geology_indicator_new.pfb" .
+file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/eff_recharge_0013.pfb" .
+file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/sabino.out.press.00001.pfb" .
 
-file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/tucson.slopex.pfb" .
-file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/tucson.slopey.pfb" .
-file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/geology_indicator_new.pfb" .
-file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/eff_recharge_0013.pfb" .
+#file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/tucson.slopex.pfb" .
+#file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/tucson.slopey.pfb" .
+#file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/geology_indicator_new.pfb" .
+#file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/eff_recharge_0013.pfb" .
 #file copy -force "/extra/khmarkovich/Outputs_spinup_CLMoff_OFoff/sabino.out.press.00000.pfb" .
 
 # 
@@ -183,7 +183,7 @@ pfset Gravity                             1.0
 pfset TimingInfo.BaseUnit        1.0
 pfset TimingInfo.StartCount      0.0
 pfset TimingInfo.StartTime       0.0
-pfset TimingInfo.StopTime        1000000.0
+pfset TimingInfo.StopTime        2000000.0
 pfset TimingInfo.DumpInterval    1000.0
 
 #pfset TimeStep.Type              Constant
@@ -425,7 +425,7 @@ pfset Solver.CLM.FieldCapacity                        0.98
 pfset Solver.CLM.IrrigationType                       none
 
 pfset Solver.EvapTransFile                            True
-pfset Solver.EvapTrans.FileName                       "eff_recharge_0013.pfb"
+pfset Solver.EvapTrans.FileName                       "eff_recharge_0013_new.pfb"
 
 #---------------------------------------------------------
 # Initial conditions: water pressure
@@ -435,16 +435,16 @@ pfset Solver.EvapTrans.FileName                       "eff_recharge_0013.pfb"
 # pfset Geom.domain.ICPressure.RefPatch                 z-upper
 # pfset Geom.domain.ICPressure.FileName                 press.init.nc
 
-#pfset ICPressure.Type	 	                               PFBFile
-#pfset ICPressure.GeomNames                             domain
-#pfset Geom.domain.ICPressure.RefPatch                  z-upper
-#pfset Geom.domain.ICPressure.FileName                  sabino.out.press.00001.pfb
+pfset ICPressure.Type	 	                               PFBFile
+pfset ICPressure.GeomNames                             domain
+pfset Geom.domain.ICPressure.RefPatch                  z-upper
+pfset Geom.domain.ICPressure.FileName                  sabino.out.press.00001.pfb
 
-pfset ICPressure.Type                                   HydroStaticPatch
-pfset ICPressure.GeomNames                              domain
-pfset Geom.domain.ICPressure.Value                      -250.0
-pfset Geom.domain.ICPressure.RefGeom                    domain
-pfset Geom.domain.ICPressure.RefPatch                   z-upper
+#pfset ICPressure.Type                                   HydroStaticPatch
+#pfset ICPressure.GeomNames                              domain
+#pfset Geom.domain.ICPressure.Value                      -250.0
+#pfset Geom.domain.ICPressure.RefGeom                    domain
+#pfset Geom.domain.ICPressure.RefPatch                   z-upper
 
 #----------------------------------------------------------------
 # Outputs
@@ -549,8 +549,8 @@ pfset ComputationalGrid.NX                246
 pfset ComputationalGrid.NY                178 
 pfset ComputationalGrid.NZ                10
 pfdist geology_indicator_new.pfb
-pfdist eff_recharge_0013.pfb
-#pfdist sabino.out.press.00001.pfb
+pfdist eff_recharge_0013_new.pfb
+pfdist sabino.out.press.00001.pfb
 
 #-----------------------------------------------------------------------------
 # Run Simulation 
@@ -568,8 +568,8 @@ pfundist $runname
 pfundist tucson.slopex.pfb
 pfundist tucson.slopey.pfb
 pfundist geology_indicator_new.pfb
-pfundist eff_recharge_0013.pfb
-#pfundist sabino.out.press.00001.pfb
+pfundist eff_recharge_0013_new.pfb
+pfundist sabino.out.press.00001.pfb
 
 puts "ParFlow run Complete"
 
