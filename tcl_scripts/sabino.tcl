@@ -12,22 +12,29 @@ pfset     FileVersion    4
 #-----------------------------------------------------------------------------
 # Set Processor topology 
 #-----------------------------------------------------------------------------
-pfset Process.Topology.P 24
-pfset Process.Topology.Q 24
+pfset Process.Topology.P 7
+pfset Process.Topology.Q 4
 pfset Process.Topology.R 1
 
 #-----------------------------------------------------------------------------
 # Make a directory for the simulation and copy inputs into it
 #-----------------------------------------------------------------------------
 #exec mkdir "Outputs_spinup_CLMoff_OFoff"
-cd "/scratch/06175/khm293/Outputs_CLMoff_OFoff/"
+#cd "/scratch/06175/khm293/Outputs_CLMoff_OFoff/"
+cd "/extra/khmarkovich/Outputs_spinup_CLMoff_OFoff/" 
 
 # ParFlow Inputs
-file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopex.pfb" .
-file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopey.pfb" .
-file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/geology_indicator.pfb" .
-file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/eff_recharge_0013.pfb" .
-file copy -force "/scratch/06175/khm293/Outputs_CLMoff_OFoff/sabino.out.press.00000.pfb" .
+#file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopex.pfb" .
+#file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/tucson.slopey.pfb" .
+#file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/geology_indicator_new.pfb" .
+#file copy -force "/home1/06175/khm293/Sabino_model/parflow_inputs/eff_recharge_0013.pfb" .
+#file copy -force "/scratch/06175/khm293/Outputs_CLMoff_OFoff/sabino.out.press.00000.pfb" .
+
+file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/tucson.slopex.pfb" .
+file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/tucson.slopey.pfb" .
+file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/geology_indicator_new.pfb" .
+file copy -force "/home/u4/khmarkovich/Sabino_model/parflow_inputs/eff_recharge_0013.pfb" .
+#file copy -force "/extra/khmarkovich/Outputs_spinup_CLMoff_OFoff/sabino.out.press.00000.pfb" .
 
 # 
 # CLM Inputs
@@ -82,7 +89,7 @@ pfset Geom.domain.Patches             "x-lower x-upper y-lower y-upper z-lower z
 #-----------------------------------------------------------------------------
  pfset GeomInput.indi_input.InputType      IndicatorField
  pfset GeomInput.indi_input.GeomNames      "s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12 s13 s14 s15 s16 g1 g2 g3 g4"
- pfset Geom.indi_input.FileName            "geology_indicator.pfb"
+ pfset Geom.indi_input.FileName            "geology_indicator_new.pfb"
  
  pfset GeomInput.s1.Value                3
  pfset GeomInput.s2.Value                5
@@ -433,11 +440,11 @@ pfset Solver.EvapTrans.FileName                       "eff_recharge_0013.pfb"
 #pfset Geom.domain.ICPressure.RefPatch                  z-upper
 #pfset Geom.domain.ICPressure.FileName                  sabino.out.press.00001.pfb
 
-#pfset ICPressure.Type                                   HydroStaticPatch
-#pfset ICPressure.GeomNames                              domain
-#pfset Geom.domain.ICPressure.Value                      0.0
-#pfset Geom.domain.ICPressure.RefGeom                    domain
-#pfset Geom.domain.ICPressure.RefPatch                   z-lower
+pfset ICPressure.Type                                   HydroStaticPatch
+pfset ICPressure.GeomNames                              domain
+pfset Geom.domain.ICPressure.Value                      -250.0
+pfset Geom.domain.ICPressure.RefGeom                    domain
+pfset Geom.domain.ICPressure.RefPatch                   z-upper
 
 #----------------------------------------------------------------
 # Outputs
@@ -510,9 +517,9 @@ pfset Solver.Linear.Preconditioner                       PFMG
 pfset Solver.Linear.Preconditioner.PCMatrixType          FullJacobian
 
 #keys for first round of spin-up
-pfset OverlandFlowSpinUp                              0
-#pfset OverlandSpinupDampP1                           10.0
-#pfset OverlandSpinupDampP2                           0.1
+pfset OverlandFlowSpinUp                             1
+pfset OverlandSpinupDampP1                           10.0
+pfset OverlandSpinupDampP2                           0.1
 
  pfset NetCDF.NumStepsPerFile	                         24
  pfset NetCDF.CLMNumStepsPerFile                       24
@@ -541,7 +548,7 @@ pfdist tucson.slopey.pfb
 pfset ComputationalGrid.NX                246 
 pfset ComputationalGrid.NY                178 
 pfset ComputationalGrid.NZ                10
-pfdist geology_indicator.pfb
+pfdist geology_indicator_new.pfb
 pfdist eff_recharge_0013.pfb
 #pfdist sabino.out.press.00001.pfb
 
@@ -560,7 +567,7 @@ pfundist $runname
 #pfundist press.init.pfb
 pfundist tucson.slopex.pfb
 pfundist tucson.slopey.pfb
-pfundist geology_indicator.pfb
+pfundist geology_indicator_new.pfb
 pfundist eff_recharge_0013.pfb
 #pfundist sabino.out.press.00001.pfb
 
