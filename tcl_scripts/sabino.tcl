@@ -51,7 +51,7 @@ pfset ComputationalGrid.DZ                100.0
 
 pfset ComputationalGrid.NX                246 
 pfset ComputationalGrid.NY                178 
-pfset ComputationalGrid.NZ                17  
+pfset ComputationalGrid.NZ                10  
 
 
 #-----------------------------------------------------------------------------
@@ -74,7 +74,7 @@ pfset Geom.domain.Lower.Z                        0.0
  
 pfset Geom.domain.Upper.X                        22140.0
 pfset Geom.domain.Upper.Y                        16020.0
-pfset Geom.domain.Upper.Z                         1700.0
+pfset Geom.domain.Upper.Z                         1000.0
 pfset Geom.domain.Patches             "x-lower x-upper y-lower y-upper z-lower z-upper"
 
 #-----------------------------------------------------------------------------
@@ -179,14 +179,14 @@ pfset TimingInfo.StartTime       0.0
 pfset TimingInfo.StopTime        1000000.0
 pfset TimingInfo.DumpInterval    1000.0
 
-pfset TimeStep.Type              Constant
-pfset TimeStep.Value             1.0
+#pfset TimeStep.Type              Constant
+#pfset TimeStep.Value             1.0
 
-#pfset TimeStep.Type              Growth
-#pfset TimeStep.InitialStep       0.0001
-#pfset TimeStep.GrowthFactor      1.01
-#pfset TimeStep.MaxStep           10
-#pfset TimeStep.MinStep           0.0001
+pfset TimeStep.Type              Growth
+pfset TimeStep.InitialStep       0.0001
+pfset TimeStep.GrowthFactor      1.1
+pfset TimeStep.MaxStep           1000
+pfset TimeStep.MinStep           0.0001
 
 #-----------------------------------------------------------------------------
 # Porosity
@@ -428,10 +428,10 @@ pfset Solver.EvapTrans.FileName                       "eff_recharge_0013.pfb"
 # pfset Geom.domain.ICPressure.RefPatch                 z-upper
 # pfset Geom.domain.ICPressure.FileName                 press.init.nc
 
-pfset ICPressure.Type	 	                               PFBFile
-pfset ICPressure.GeomNames                             domain
-pfset Geom.domain.ICPressure.RefPatch                  z-upper
-pfset Geom.domain.ICPressure.FileName                  sabino.out.press.00001.pfb
+#pfset ICPressure.Type	 	                               PFBFile
+#pfset ICPressure.GeomNames                             domain
+#pfset Geom.domain.ICPressure.RefPatch                  z-upper
+#pfset Geom.domain.ICPressure.FileName                  sabino.out.press.00001.pfb
 
 #pfset ICPressure.Type                                   HydroStaticPatch
 #pfset ICPressure.GeomNames                              domain
@@ -477,24 +477,17 @@ pfset Solver.TerrainFollowingGrid                     True
 pfset Solver.Nonlinear.VariableDz                     True
 pfset dzScale.GeomNames                               domain
 pfset dzScale.Type                                    nzList
-pfset dzScale.nzListNumber                            17
-pfset Cell.0.dzScale.Value                             2.0
-pfset Cell.1.dzScale.Value                             1.0
-pfset Cell.2.dzScale.Value                             0.5
-pfset Cell.3.dzScale.Value                             0.5
-pfset Cell.4.dzScale.Value                             0.2
-pfset Cell.5.dzScale.Value                             0.2
-pfset Cell.6.dzScale.Value                             0.2
-pfset Cell.7.dzScale.Value                             0.2
-pfset Cell.8.dzScale.Value                             0.1
-pfset Cell.9.dzScale.Value                             0.02
-pfset Cell.10.dzScale.Value                            0.02
-pfset Cell.11.dzScale.Value                            0.02
-pfset Cell.12.dzScale.Value                            0.02
-pfset Cell.13.dzScale.Value                            0.01
-pfset Cell.14.dzScale.Value                            0.006
-pfset Cell.15.dzScale.Value                            0.003
-pfset Cell.16.dzScale.Value                            0.001
+pfset dzScale.nzListNumber                            10
+pfset Cell.0.dzScale.Value                            2.0
+pfset Cell.1.dzScale.Value                            1.0
+pfset Cell.2.dzScale.Value                            1.0
+pfset Cell.3.dzScale.Value                            0.6
+pfset Cell.4.dzScale.Value                            0.3
+pfset Cell.5.dzScale.Value                            0.08
+pfset Cell.6.dzScale.Value                            0.01
+pfset Cell.7.dzScale.Value                            0.006
+pfset Cell.8.dzScale.Value                            0.003
+pfset Cell.9.dzScale.Value                            0.001
 
 pfset Solver.MaxIter                                  25000
 pfset Solver.Drop                                     1E-20
@@ -547,10 +540,10 @@ pfdist tucson.slopey.pfb
 
 pfset ComputationalGrid.NX                246 
 pfset ComputationalGrid.NY                178 
-pfset ComputationalGrid.NZ                17
+pfset ComputationalGrid.NZ                10
 pfdist geology_indicator.pfb
 pfdist eff_recharge_0013.pfb
-pfdist sabino.out.press.00001.pfb
+#pfdist sabino.out.press.00001.pfb
 
 #-----------------------------------------------------------------------------
 # Run Simulation 
@@ -569,7 +562,7 @@ pfundist tucson.slopex.pfb
 pfundist tucson.slopey.pfb
 pfundist geology_indicator.pfb
 pfundist eff_recharge_0013.pfb
-pfundist sabino.out.press.00001.pfb
+#pfundist sabino.out.press.00001.pfb
 
 puts "ParFlow run Complete"
 
